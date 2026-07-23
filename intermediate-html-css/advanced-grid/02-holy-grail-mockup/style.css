@@ -5,6 +5,18 @@
 
 .container {
   text-align: center;
+
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 1fr 4fr;
+  /* Optional according to solution (grid element positioning is done via grid-column and grid-row*/
+  grid-template-rows: max-content max-content 1fr max-content;
+  grid-template-areas:
+    "header header"
+    "sidebar nav"
+    "sidebar article"
+    "footer footer";
+  height: 100vh;
 }
 
 .container div {
@@ -17,16 +29,33 @@
 
 .header {
   background-color: #393f4d;
+
+  grid-area: header;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+.logo {
+  justify-self: start;
 }
 
 .nav ul,
 .menu ul {
   font-size: 16px;
   list-style-type: none;
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
 }
 
 .sidebar {
   background-color: #C50208;
+
+  grid-area: sidebar;
+  display: grid;
+  gap: 50px;
 }
 
 .sidebar .photo {
@@ -35,6 +64,9 @@
   font-size: 12px;
   font-weight: normal;
   border-radius: 10px;
+
+  display: grid;
+  align-items: center;
 }
 
 
@@ -43,10 +75,15 @@
   color: black;
   font-size: 16px;
   font-weight: normal;
+
+  display: grid;
+  align-items: center;
 }
 
 .nav {
   background-color: #C50208;
+
+  grid-area: nav;
 }
 
 .nav ul li {
@@ -55,6 +92,15 @@
 
 .article {
   background-color: #bccbde;
+
+  --gap: 15px;
+  grid-area: article;
+  display: grid;
+  /* My previous solution (better for my MacBook screen */
+  /* grid-template-columns: repeat(auto-fit, minmax(calc(1150px / 6 - var(--gap)), 1fr)); */
+  /* Odin requirement */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--gap);
 }
 
 .article p {
@@ -68,12 +114,17 @@
   background-color: #FFFFFF;
   color: black;
   text-align: center;
+
+  /* Not necessary, but odin requirement */
+  height: 200px;
 }
 
 .card p {
   color: black;
   font-weight: normal;
   font-size: 14px;
+
+  padding: 5px;
 }
 
 .card .title {
@@ -83,6 +134,8 @@
 
 .footer {
   background-color: #393f4d;
+
+  grid-area: footer;
 }
 
 .footer p {
